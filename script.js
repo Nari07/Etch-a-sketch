@@ -1,28 +1,53 @@
 const gridContainer = document.getElementById('gridContainer');
-const row = document.getElementById('row');
+const cell = document.getElementById('cell');
+const eraser = document.getElementById('eraser');
 
-function createGrid(){
+let mouseDown = false;
+let eraseButton = false;
+
+function createRow(){
   for (i = 1; i < 17; i++){
     let cellRow = document.createElement('div');
     cellRow.className = 'row';
-    cellRow.innerText = `${i}`;
-    cellRow.id = 'row';
+    // cellRow.innerText = `${i}`;
+    cellRow.id = 'cell';
     gridContainer.appendChild(cellRow);
-/*     for (i = 0; i < 16; i++){
-      createColumn();
-    } */
+
+    cellRow.addEventListener('mousedown', function(e){
+      mouseDown = true;
+      e.target.style.backgroundColor = ('black');
+    });
+    cellRow.addEventListener('mouseup', function(){
+      mouseDown = false;
+    });
+    cellRow.addEventListener('mouseover', paintPixel);
+    
+    eraser.addEventListener('onclick', function(e){
+      eraseButton = true;
+      e.target.style.backgroundColor = ('white')
+    })
   }
-  
+
 }
 
-function createColumn(){
-	for (i = 1; i < 17; i++){
-    let cellColumn = document.createElement('div');
-    cellColumn.className = 'row';
-    cellColumn.innerText = `${i}`;
-    gridContainer.appendChild(cellColumn);
-   }
+function createGrid(){
+  for (j= 1; j < 17; j++){
+    createRow();
+  }
 }
+
 
 createGrid();
-   
+
+function paintPixel(e){
+  if (mouseDown === true){
+    e.target.style.backgroundColor = ('black');
+  }
+  
+  if (eraseButton === true){
+    e.target.style.backgroundColor = ('white');
+  }
+}
+
+
+
