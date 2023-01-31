@@ -5,6 +5,10 @@ const eraser = document.getElementById('eraser');
 let mouseDown = false;
 let eraseButton = false;
 
+eraser.addEventListener('click', function(){
+  eraseButton = true;
+});
+
 function createRow(){
   for (i = 1; i < 17; i++){
     let cellRow = document.createElement('div');
@@ -17,15 +21,12 @@ function createRow(){
       mouseDown = true;
       e.target.style.backgroundColor = ('black');
     });
+
     cellRow.addEventListener('mouseup', function(){
       mouseDown = false;
     });
+
     cellRow.addEventListener('mouseover', paintPixel);
-    
-    eraser.addEventListener('onclick', function(e){
-      eraseButton = true;
-      e.target.style.backgroundColor = ('white')
-    })
   }
 
 }
