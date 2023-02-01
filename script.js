@@ -1,6 +1,8 @@
 const gridContainer = document.getElementById('gridContainer');
 const cell = document.getElementById('cell');
 const eraser = document.getElementById('eraser');
+let pixel = document.getElementsByClassName('row');
+const sketch = document.getElementById('sketch');
 
 let mouseDown = false;
 let eraseButton = false;
@@ -9,6 +11,12 @@ eraser.addEventListener('click', function(){
   eraseButton = true;
   mouseDown = false;
 });
+
+sketch.addEventListener('click', function(){
+  eraseButton = false;
+  paintPixel();
+});
+
 
 function createRow(){
   for (i = 1; i < 17; i++){
@@ -21,9 +29,9 @@ function createRow(){
     cellRow.addEventListener('mousedown', function(e){
       mouseDown = true;
       if (eraseButton === true) {
-        e.target.style.backgroundColor = ('white');
+        e.target.style.backgroundColor = 'white';
       } else {
-        e.target.style.backgroundColor = ('black');
+        e.target.style.backgroundColor = 'black';
       }
     });
 
@@ -32,6 +40,14 @@ function createRow(){
     });
 
     cellRow.addEventListener('mouseover', paintPixel);
+
+    eraseAll.addEventListener('click', function(){
+      eraseButton = false;
+      for (let i = 0; i < pixel.length; i++){
+        pixel[i].style.backgroundColor = 'white';
+      }
+     });
+
   }
 
 }
