@@ -7,6 +7,7 @@ let eraseButton = false;
 
 eraser.addEventListener('click', function(){
   eraseButton = true;
+  mouseDown = false;
 });
 
 function createRow(){
@@ -19,7 +20,11 @@ function createRow(){
 
     cellRow.addEventListener('mousedown', function(e){
       mouseDown = true;
-      e.target.style.backgroundColor = ('black');
+      if (eraseButton === true) {
+        e.target.style.backgroundColor = ('white');
+      } else {
+        e.target.style.backgroundColor = ('black');
+      }
     });
 
     cellRow.addEventListener('mouseup', function(){
@@ -45,7 +50,7 @@ function paintPixel(e){
     e.target.style.backgroundColor = ('black');
   }
   
-  if (eraseButton === true){
+  if (eraseButton === true && mouseDown === true) {
     e.target.style.backgroundColor = ('white');
   }
 }
