@@ -3,6 +3,8 @@ const cell = document.getElementById('cell');
 const eraser = document.getElementById('eraser');
 let pixel = document.getElementsByClassName('row');
 const sketch = document.getElementById('sketch');
+const slider = document.getElementById("myRange");
+const output = document.getElementById("size");
 
 let mouseDown = false;
 let eraseButton = false;
@@ -17,9 +19,21 @@ sketch.addEventListener('click', function(){
   paintPixel();
 });
 
+// slider value
+output.innerHTML = slider.value + ' x ' + slider.value;
+slider.addEventListener('input', function(){
+  output.innerHTML = this.value + ' x ' + this.value;
+});
 
-function createRow(){
-  for (i = 1; i < 17; i++){
+
+
+slider.oninput = function(){
+  document.querySelectorAll('.row').forEach(e => e.remove());
+  createGrid(slider.value);
+}
+
+function createRow(val){
+  for (i = 0; i < val; i++){
     let cellRow = document.createElement('div');
     cellRow.className = 'row';
     // cellRow.innerText = `${i}`;
@@ -52,14 +66,14 @@ function createRow(){
 
 }
 
-function createGrid(){
-  for (j= 1; j < 17; j++){
-    createRow();
+function createGrid(val){
+  for (j= 0; j < val; j++){
+    createRow(val);
   }
 }
 
 
-createGrid();
+createGrid(16);
 
 function paintPixel(e){
   if (mouseDown === true){
