@@ -8,6 +8,7 @@ const output = document.getElementById("size");
 
 let mouseDown = false;
 let eraseButton = false;
+let sliderValue = slider.value;
 
 eraser.addEventListener('click', function(){
   eraseButton = true;
@@ -23,6 +24,7 @@ sketch.addEventListener('click', function(){
 output.innerHTML = slider.value + ' x ' + slider.value;
 slider.addEventListener('input', function(){
   output.innerHTML = this.value + ' x ' + this.value;
+  sliderValue = slider.value;
 });
 
 
@@ -30,13 +32,19 @@ slider.addEventListener('input', function(){
 slider.oninput = function(){
   document.querySelectorAll('.row').forEach(e => e.remove());
   createGrid(slider.value);
+ 	gridContainer.style.display = 'grid'; 
+  gridContainer.style.gridTemplateColumns = 'repeat(' + `${sliderValue}` + ', [col-start] minmax(0, 25px))';
+  // gridContainer.style.columnGap = '0px';
+  // gridContainer.style.gridTemplateColumns = 'minmax(0, 1fr)';
+  gridContainer.style.maxWidth = '500px';
+  gridContainer.style.maxHeight = '500px';
 }
 
 function createRow(val){
   for (i = 0; i < val; i++){
     let cellRow = document.createElement('div');
     cellRow.className = 'row';
-    // cellRow.innerText = `${i}`;
+    cellRow.innerText = ' ';
     cellRow.id = 'cell';
     gridContainer.appendChild(cellRow);
 
@@ -74,6 +82,8 @@ function createGrid(val){
 
 
 createGrid(16);
+gridContainer.style.gridTemplateColumns='repeat(' + `${sliderValue}` + ', [col-start] 25px)';
+
 
 function paintPixel(e){
   if (mouseDown === true){
