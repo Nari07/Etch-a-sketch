@@ -7,14 +7,13 @@ const slider = document.getElementById("myRange");
 const output = document.getElementById("size");
 const rainbow = document.getElementById("rainbow");
 const pencil = document.getElementById("pencil");
+const defaultOpacity = 0.1;
 
 let mouseDown = false;
 let eraseButton = false;
 let rgbButton = false;
 let pencilButton = false;
 let sliderValue = slider.value;
-
-
 
 // slider value
 output.innerHTML = slider.value + ' x ' + slider.value;
@@ -47,23 +46,19 @@ function createRow(val){
       mouseDown = true;
       paintPixel(e);
     });
-
     cellRow.addEventListener('mouseup', function(){
       mouseDown = false;
     });
-
     cellRow.addEventListener('mouseover', paintPixel);
-
     eraseAll.addEventListener('click', function(){
       eraseButton = false;
       for (let i = 0; i < pixel.length; i++){
         pixel[i].style.backgroundColor = 'white';
        	pixel[i].style.border = '1px solid rgba(157, 174, 180, 0.2';
+        pixel[i].style.opacity = 1;
       }
      });
-		
   }
-
 }
 
 function createGrid(val){
@@ -77,32 +72,43 @@ gridContainer.style.gridTemplateColumns='repeat(' + `${sliderValue}` + ', [col-s
 
 
 function paintPixel(e){  
-  if (mouseDown === true){
-    e.target.style.backgroundColor = ('black');
-    e.target.style.margin = '0px';
-    e.target.style.border = '0px';
-    e.target.style.backgroundClip = 'content-box';
-  } 
-  if (eraseButton === true && mouseDown === true){
-    e.target.style.backgroundColor = ('white');
-    e.target.style.backgroundClip = 'content-box';
-    e.target.style.border = '1px solid rgba(157, 174, 180, 0.2';
+  if (mouseDown === true) {
+    if (eraseButton === true) {
+      e.target.style.backgroundColor = ('white');
+      e.target.style.backgroundClip = 'content-box';
+      e.target.style.border = '1px solid rgba(157, 174, 180, 0.2';
 
-  }
-  if (rgbButton === true && mouseDown === true){
-    let randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-    e.target.style.backgroundColor = randomColor;
-    e.target.style.margin = '0px';
-    e.target.style.borderWidth = '0px';
-    e.target.style.backgroundClip = 'content-box';
-  }
-  if (pencilButton === true && mouseDown === true){
-  	e.target.style.backgroundColor = ('rgba(52,52,52, 0.15)');
-		e.target.style.margin = '0px';
-    e.target.style.border = '0px';
-    e.target.style.backgroundClip = 'content-box';
+    } else if (rgbButton === true) {
+      let randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      e.target.style.backgroundColor = randomColor;
+      e.target.style.borderWidth = '0px';
+      e.target.style.backgroundClip = 'content-box';
 
-  }
+    } else if (pencilButton === true) {
+      e.target.style.margin = '0px';
+      e.target.style.borderWidth= '0px';
+      e.target.style.backgroundClip = 'content-box';
+
+      let currentBGcolor = e.target.style.backgroundColor;
+      
+      //if div has not been colored in, set to default opacity
+      if(!currentBGcolor || currentBGcolor == 'white') {
+        e.target.style.backgroundColor = 'rgba(52,52,52)';
+        e.target.style.opacity = '0.1';
+        
+      //if div colored in, increase opacity
+      } else {
+        e.target.style.opacity = Number(e.target.style.opacity) + 0.1;
+        console.log( e.target.style.opacity );
+      }
+
+    } else {
+      e.target.style.backgroundColor = ('black');
+      e.target.style.margin = '0px';
+      e.target.style.border = '0px';
+      e.target.style.backgroundClip = 'content-box';
+    }
+ }
 }
 
 eraser.addEventListener('click', function(){
