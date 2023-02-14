@@ -7,22 +7,34 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1> Etch-a-Sketch </h1>
-      <div id= "mid">
-        <div id="sidebar">
-          <p><button id= "eraser">Eraser</button></p>
-          <p><button id= "eraseAll">Erase All</button></p>
-          <p><button id="ink">Black Ink</button></p>
-          <p><button id="rainbow">Rainbow</button></p>
-          <p><button id="pencil">Pencil</button></p>
-          <p> Choose Grid Size
-            <div class="slidecontainer">
-              <input type="range" min="20" max="60" value="20" class="slider" id="myRange">
-            </div>
-            <p> Grid size: <span id="size"></span></p>
-          </p>
+    <div id="headerContainer">
+      <img src = "images/pencil sketch.png" alt="pencil sketching picture" id="pencilLine"/>
+      <h1> Etch-a-Sketch </h1>
+    </div>
+    <div id= "mid">
+      <div id="sidebar">
+        <p><input type="image" id= "eraser" src="images/eraser.png" alt= "eraser picture"/></p>
+        <p><input type="image" id= "eraseAll" src="images/recycle-bin.png" alt= "recycle-bin picture"/></p>
+        <p><input type="image" id= "ink" src="images/quill.png" alt= "quill picture"/></p>
+        <p><input type="image" id= "rainbow" src="images/rainbow.png" alt= "rainbow picture"/></p>
+        <p><input type="image" id= "pencil" src="images/pencil.png" alt= "pencil picture"/></p>
+        
+        <div class="slidecontainer">
+          <input type="range" min="20" max="75" value="20" class="slider" id="myRange">
         </div>
-        <div id="gridContainer"></div>
+        <p id="gridSliderSize"><span id="size"></span></p>
+        
       </div>
-	<script src="script.js"></script>
+      <div id="gridContainer"></div>
+    </div>
+    <script src="script.js"></script>
+    <footer> 
+      <a href="https://www.flaticon.com/free-icons/eraser" title="eraser icons">Eraser icons created by Freepik - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/recycle-bin" title="recycle bin icons">Recycle bin icons created by Freepik - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/feather-pen" title="feather pen icons">Feather pen icons created by Freepik - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/rainbow" title="rainbow icons">Rainbow icons created by Freepik - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Freepik - Flaticon</a>
+    </footer>
   </body>
+ 
+  

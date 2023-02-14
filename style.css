@@ -5,7 +5,7 @@
     
 }
 
-*{ border: 1px solid red; }
+/* *{ border: 1px solid red; } */
 
 @font-face {
   font-family: 'sketch';
@@ -16,12 +16,43 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'handwriting';
+  src: url(fonts/JennaSue.woff2) format('woff2'),
+      url(fonts/JennaSue.woff) format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pijamas';
+  src: url(/fonts/Pijamas.woff2) format('woff2'),
+      url(/fonts/Pijamas.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-size: 19px;
+  font-family: Pijamas, handwriting, sans-serif;
+  font-weight: bold;
 }
 
+#headerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pencilLine{
+  width: 120px;
+  height: 110px;
+}
 
 h1 {
   display: flex;
@@ -30,6 +61,10 @@ h1 {
   font-family: sketch, sans-serif;
   font-weight: 100;
   font-size: 100px;
+  background-image: url(images/brush-transparent.png);
+  background-size: 600px 120px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #gridContainer div{
@@ -64,6 +99,11 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url("images/rectangleBorder.png");
+  background-size: 120px 575px;
+  background-repeat: no-repeat;
+  background-position: top left 5px;
+  gap:15px;
 }
 
 #mid{
@@ -76,7 +116,8 @@ h1 {
 
 .slider{
   -webkit-appearance: none;
-  height: 10px;
+  height: 7px;
+  width: 70px;
   border-radius: 20px 20px;;
   background: rgba(198, 149, 233, 0.5);
 }
@@ -89,4 +130,38 @@ h1 {
   background-color: rgb(189, 161, 211);
   overflow: visible;
   cursor: pointer;
+}
+
+input[type="image"]{
+  width: 35px;
+  margin-left: 45px;
+  margin-right: 45px;
+}
+
+footer{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+  font-size: 9px;
+  position: fixed;
+  bottom: 0;
+  color:rgba(51, 61, 65, 0.2)
+}
+
+a {
+  color:rgba(51, 61, 65, 0.2)
+}
+
+#eraser{
+  margin-top: 25px;
+}
+
+#pencil{
+  margin-bottom: 15px;
+}
+#gridSliderSize{
+  margin-top: 0;
+  margin-bottom: 35px;
 }

@@ -1,7 +1,7 @@
 const gridContainer = document.getElementById('gridContainer');
 const cell = document.getElementById('cell');
 const eraser = document.getElementById('eraser');
-const pixel = document.getElementsByClassName('row');
+let pixel = document.getElementsByClassName('pixel');
 const ink = document.getElementById('ink');
 const slider = document.getElementById("myRange");
 const output = document.getElementById("size");
@@ -25,7 +25,7 @@ slider.addEventListener('input', function(){
 
 //create new grid based on slider input
 slider.oninput = function(){
-  document.querySelectorAll('.row').forEach(e => e.remove());
+  document.querySelectorAll('.pixel').forEach(e => e.remove());
   createGrid(slider.value);
  	gridContainer.style.display = 'grid'; 
   gridContainer.style.gridTemplateColumns = 'repeat(' + `${sliderValue}` + ', [col-start] minmax(0, 25px))';
@@ -38,7 +38,7 @@ slider.oninput = function(){
 function createRow(val){
   for (i = 0; i < val; i++){
     let cellRow = document.createElement('div');
-    cellRow.className = 'row';
+    cellRow.className = 'pixel';
     cellRow.id = 'cell';
     gridContainer.appendChild(cellRow);
 
@@ -50,14 +50,6 @@ function createRow(val){
       mouseDown = false;
     });
     cellRow.addEventListener('mouseover', paintPixel);
-    eraseAll.addEventListener('click', function(){
-      eraseButton = false;
-      for (let i = 0; i < pixel.length; i++){
-        pixel[i].style.backgroundColor = 'white';
-       	pixel[i].style.border = '1px solid rgba(157, 174, 180, 0.2';
-        pixel[i].style.opacity = 1;
-      }
-     });
   }
 }
 
@@ -66,6 +58,17 @@ function createGrid(val){
     createRow(val);
   }
 }
+
+eraseAll.addEventListener('click', function(){
+  console.log("asdf");
+  pixel = document.getElementsByClassName('pixel');
+  eraseButton = false;
+  for (let i = 0; i < pixel.length; i++){
+    pixel[i].style.backgroundColor = 'white';
+     pixel[i].style.border = '1px solid rgba(157, 174, 180, 0.2';
+    pixel[i].style.opacity = 1;
+  }
+ });
 
 createGrid(20);
 gridContainer.style.gridTemplateColumns='repeat(' + `${sliderValue}` + ', [col-start] 25px)';
