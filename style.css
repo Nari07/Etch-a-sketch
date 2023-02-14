@@ -100,10 +100,10 @@ h1 {
   align-items: center;
   justify-content: center;
   background-image: url("images/rectangleBorder.png");
-  background-size: 120px 575px;
+  background-size: 120px 555px;
   background-repeat: no-repeat;
   background-position: top left 5px;
-  gap:15px;
+  gap: 10px;
 }
 
 #mid{
